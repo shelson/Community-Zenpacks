@@ -44,17 +44,28 @@ class BladeServers(CommandPlugin):
                     # We can tag it with it's host
                     oldHostName = om.bsDisplayName
                 # Now create the new object and initalise it some
+                # we initialise all the properties here, since if it's an empty
+                # slot we need to make sure nothing remains of a previous entry
                 # We set the snmpindex so that the collector is happy
                 om = self.objectMap()
                 om.bsPosition = int(match.groups()[0])
                 om.snmpindex = om.bsPosition
                 om.id = self.prepId("%s slot %2d" % (device.id, om.bsPosition))
+                om.bsProductId = ""
                 om.bsInstalledRam = 0
-                om.bsCPUCount = 0
+                om.bsCPUCount = 0 
+                om.bsSerialNum = ""
+                om.bsPartNumber = ""
+                om.bsSystemBoardPartNum = ""
+                om.bsCPUType = ""
+                om.bsInstalledRam = ""
+                om.bsNic1Mac = ""
+                om.bsNic2Mac = ""
+                om.bsIloFirmwareVersion = ""
+                om.bsIloIp = ""
                 bladeCount = bladeCount + 1
                 log.debug("Found a blade header, processing blade %d with position %s" % (bladeCount, om.bsPosition))
                 continue
-
             # Now look for the information we want, etc
 
             # First check, is the next line "no blade here"
