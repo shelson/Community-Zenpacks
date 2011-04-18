@@ -5,10 +5,16 @@
 
     <configure zcml:condition="installed Products.Zuul">
 
-            <adapter factory=".info.BladeChassisInfo"
-                     for=".HPBladeChassis.BladeChassis"
-                     provides=".interfaces.IBladeChassisInfo"
+            <adapter factory=".info.BladeServerInfo"
+                     for=".BladeServer.BladeServer"
+                     provides=".interfaces.IBladeServerInfo"
                      />
+
+            <adapter factory=".info.BladeChassisFanInfo"
+                     for=".BladeChassisFan.BladeChassisFan"
+                     provides=".interfaces.IBladeChassisFanInfo"
+                     />
+
 
             <browser:resourceDirectory
                      name="hpbladechassis"
@@ -16,7 +22,7 @@
                      />
 
             <browser:viewlet
-                     name="js-ciscoenvmon"
+                     name="js-hpbladechassis"
                      paths="/++resource++hpbladechassis/BladeChassis.js"
                      weight="10"
                      manager="Products.ZenUI3.browser.interfaces.IJavaScriptSrcManager"

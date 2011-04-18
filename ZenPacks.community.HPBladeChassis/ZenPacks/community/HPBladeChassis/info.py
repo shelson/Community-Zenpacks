@@ -27,6 +27,7 @@ from ZenPacks.community.HPBladeChassis import interfaces
 class BladeChassisInfo(ComponentInfo):
     implements(interfaces.IBladeChassisInfo)
 
+    bcEnclosureName = ProxyProperty("bcEnclosureName")
     bcEnclosureType = ProxyProperty("bcEnclosureType")
     bcPartNumber = ProxyProperty("bcPartNumber")
     bcSerialNumber = ProxyProperty("bcSerialNumber")
@@ -38,4 +39,31 @@ class BladeChassisInfo(ComponentInfo):
     bcOATrayType = ProxyProperty("bcOATrayType")
     bcOATraySparePartNumber = ProxyProperty("bcOATraySparePartNumber")
     bcOATraySerialNumber = ProxyProperty("bcOATraySerialNumber")
+
+
+
+class BladeServerInfo(ComponentInfo):
+    implements(interfaces.IBladeServerInfo)
+
+    bsDisplayName = ProxyProperty("bsDisplayName")
+    bsPosition = ProxyProperty("bsPosition")
+    bsSerialNum = ProxyProperty("bsSerialNum")
+    bsProductId = ProxyProperty("bsProductId")
+    bsPartNumber = ProxyProperty("bsPartNumber")
+    bsSystemBoardPartNum = ProxyProperty("bsSystemBoardPartNum")
+    bsCPUType = ProxyProperty("bsCPUType")
+    bsCPUCount = ProxyProperty("bsCPUCount")
+    bsNic1Mac = ProxyProperty("bsNic1Mac")
+    bsNic2Mac = ProxyProperty("bsNic2Mac")
+    bsIloIp = ProxyProperty("bsIloIp")
+    bsInstalledRam = ProxyProperty("bsInstalledRam")
+    bsIloFirmwareVersion = ProxyProperty("bsIloFirmwareVersion")
+
+class BladeChassisFanInfo(ComponentInfo):
+    implements(interfaces.IBladeChassisFanInfo)
+
+    bcfNumber = ProxyProperty("bcfNumber")
+    bcfProductName = ProxyProperty("bcfProductName")
+    bcfPartNumber = ProxyProperty("bcfPartNumber")
+    bcfSparePartNumber = ProxyProperty("bcfSparePartNumber")
 

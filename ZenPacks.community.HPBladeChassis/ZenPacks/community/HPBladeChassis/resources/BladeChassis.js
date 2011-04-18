@@ -25,64 +25,92 @@ function render_link(ob) {
     }
 }
 
-ZC.CiscoExpansionCardPanel = Ext.extend(ZC.ComponentGridPanel, {
+ZC.BladeServerPanel = Ext.extend(ZC.ComponentGridPanel, {
     constructor: function(config) {
         config = Ext.applyIf(config||{}, {
-            componentType: 'CiscoExpansionCard',
-            autoExpandColumn: 'product',
+            componentType: 'BladeServer',
+            autoExpandColumn: 'bsDisplayName',
             fields: [
-                {name: 'uid'},
-                {name: 'severity'},
-                {name: 'status'},
-                {name: 'slot'},
-                {name: 'name'},
-                {name: 'manufacturer'},
-                {name: 'product'},
-                {name: 'serialNumber'},
-                {name: 'hasMonitor'},
-                {name: 'monitor'}
+                {name: 'bsDisplayName'},
+                {name: 'bsPosition'},
+                {name: 'bsSerialNum'},
+                {name: 'bsProductId'},
+                {name: 'bsCPUCount'},
+                {name: 'bsInstalledRam'}
             ],
             columns: [{
-                id: 'severity',
-                dataIndex: 'severity',
-                header: _t('Events'),
-                renderer: Zenoss.render.severity,
-                width: 60
+                id: 'bsPosition',
+                dataIndex: 'bsPosition',
+                header: _t('Slot'),
+                width: 30
             },{
-                id: 'slot',
-                dataIndex: 'slot',
-                header: _t('Slot')
+                id: 'bsDisplayName',
+                dataIndex: 'bsDisplayName',
+                header: _t('Name')
             },{
-                id: 'manufacturer',
-                dataIndex: 'manufacturer',
-                header: _t('Manufacturer'),
-                renderer: render_link
-            },{                id: 'product',
-                dataIndex: 'product',
-                header: _t('Model'),
-                renderer: render_link
+                id: 'bsSerialNum',
+                dataIndex: 'bsSerialNum',
+                header: _t('Serial Number'),
             },{
-                id: 'serialNumber',
-                dataIndex: 'serialNumber',
-                header: _t('Serial #')
+                id: 'bsProductId',
+                dataIndex: 'bsProductId',
+                header: _t('Product Id'),
+                width: 180
             },{
-                id: 'monitor',
-                dataIndex: 'monitor',
-                header: _t('Monitored'),
-                renderer: Zenoss.render.monitor,
-                width: 60
+                id: 'bsCPUCount',
+                dataIndex: 'bsCPUCount',
+                header: _t('CPU Count'),
+                width: 100
             },{
-                id: 'status',
-                dataIndex: 'status',
-                header: _t('Status'),
+                id: 'bsInstalledRam',
+                dataIndex: 'bsInstalledRam',
+                header: _t('RAM'),
                 width: 60
             }]
         });
-        ZC.CiscoExpansionCardPanel.superclass.constructor.call(this, config);
+        ZC.BladeServerPanel.superclass.constructor.call(this, config);
     }
 });
 
-Ext.reg('CiscoExpansionCardPanel', ZC.CiscoExpansionCardPanel);
-ZC.registerName('CiscoExpansionCard', _t('Expansion Card'), _t('Expansion Cards'));
+Ext.reg('BladeServerPanel', ZC.BladeServerPanel);
+ZC.registerName('BladeServer', _t('Blade'), _t('Blades'));
+
+
+ZC.BladeChassisFanPanel = Ext.extend(ZC.ComponentGridPanel, {
+    constructor: function(config) {
+        config = Ext.applyIf(config||{}, {
+            componentType: 'BladeChassisFan',
+            autoExpandColumn: 'bcfProductName',
+            fields: [
+                {name: 'bcfProductName'},
+                {name: 'bcfNumber'},
+                {name: 'bcfPartNumber'},
+                {name: 'bcfSparePartNumber'}
+            ],
+            columns: [{
+                id: 'bcfNumber',
+                dataIndex: 'bcfNumber',
+                header: _t('Slot'),
+                width: 30
+            },{
+                id: 'bcfProductName',
+                dataIndex: 'bcfProductName',
+                header: _t('Product Name')
+            },{
+                id: 'bcfPartNumber',
+                dataIndex: 'bcfPartNumber',
+                header: _t('Part Number')
+            },{
+                id: 'bcfSparePartNumber',
+                dataIndex: 'bcfSparePartNumber',
+                header: _t('Spare Part Number')
+            }]
+        });
+        ZC.BladeChassisFanPanel.superclass.constructor.call(this, config);
+    }
+});
+
+Ext.reg('BladeChassisFanPanel', ZC.BladeChassisFanPanel);
+ZC.registerName('BladeChassisFan', _t('Fans'), _t('Fans'));
 
 })();
